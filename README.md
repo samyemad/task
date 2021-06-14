@@ -42,7 +42,7 @@
 
 **For Example**
 In the following url
-http://localhost/Task/index.php/customer/all/
+http://localhost/task/index.php/customer/all/
 
 - `Task` is the project name
 - `index.php` is available for now as it is the start point to the task

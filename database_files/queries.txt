@@ -1,0 +1,59 @@
+1- To get all customers based on countries and regex phone
+    
+    
+### output     
+    
+SELECT
+    *,
+    CASE WHEN(
+        (
+            `phone` LIKE '(212)%' AND `phone` REGEXP '\\(212\\)\\ ?[5-9]\\d{8}$'
+        ) OR(
+            `phone` LIKE '(237)%' AND `phone` REGEXP '\\(237\\)\\ ?[2368]\\d{7,8}$'
+        ) OR(
+            `phone` LIKE '(251)%' AND `phone` REGEXP '\\(251\\)\\ ?[1-59]\\d{8}$'
+        ) OR(
+            `phone` LIKE '(258)%' AND `phone` REGEXP '\\(258\\)\\ ?[28]\\d{7,8}$'
+        ) OR(
+            `phone` LIKE '(256)%' AND `phone` REGEXP '\\(256\\)\\ ?\\d{9}$'
+        )
+    ) THEN 'ok' ELSE 'no ok'
+END AS state,
+CASE WHEN(`phone` LIKE '(212)%') THEN 'Morocoo'
+WHEN(`phone` LIKE '(237)%') THEN 'Camerron'
+WHEN(`phone` LIKE '(251)%') THEN 'Ethiopia'
+WHEN(`phone` LIKE '(258)%') THEN 'Mozambique'
+WHEN(`phone` LIKE '(256)%') THEN 'Uganda'
+END AS country
+FROM
+    customer   
+    
+########################################################################################################################################
+
+2-To get all customers based on specific country for example ( Morroco with key 212)  
+
+
+###output
+
+SELECT * ,CASE WHEN(( `phone` LIKE '(212)%' AND `phone` REGEXP '\\(212\\)\\ ?[5-9]\\d{8}$' ) ) THEN 'ok' ELSE 'no ok' END AS state, CASE WHEN(`phone` LIKE '(212)%') THEN 'Morocoo'END AS country FROM customer WHERE phone LIKE '(212)%' ;
+
+
+####################################################################################################################################
+
+3- To get all customers based on specific country and return valid numbers  for example ( Camerron with key 237 )
+
+###output 
+
+SELECT * ,CASE WHEN(( `phone` LIKE '(237)%' AND `phone` REGEXP '\\(237\\)\\ ?[2368]\\d{7,8}$' ) ) THEN 'ok' ELSE 'no ok' END AS state, CASE WHEN(`phone` LIKE '(237)%') THEN 'Camerron'END AS country FROM customer WHERE phone LIKE '(237)%' AND phone REGEXP '\\(237\\)\\ ?[2368]\\d{7,8}$';
+
+#########################################################################################################################################
+
+4- To get all customers based on specific country and return valid numbers  for example ( Uganda with key 256 )
+
+###output 
+
+SELECT * ,CASE WHEN(( `phone` LIKE '(256)%' AND `phone` REGEXP '\\(256\\)\\ ?\\d{9}$' ) ) THEN 'ok' ELSE 'no ok' END AS state, CASE WHEN(`phone` LIKE '(256)%') THEN 'Uganda'END AS country FROM customer WHERE phone LIKE '(256)%' AND phone NOT REGEXP '\\(256\\)\\ ?\\d{9}$' ;
+
+
+
+

@@ -62,8 +62,8 @@ find the Constants in Enums Folders
 
 ### Model
 
-To create your own model copy the `TestModel.php` file in the models directory.
-For further examples on using model see the usage in `User.php`
+To create your own model copy the `CustomerModel.php` file in the models directory.
+For further examples on using model see the usage in `Customer.php`
 
 ### Views
 
